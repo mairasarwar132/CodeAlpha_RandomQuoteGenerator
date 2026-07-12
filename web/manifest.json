@@ -1,0 +1,12 @@
+{
+  "name": "QuoteFlow",
+  "short_name": "QuoteFlow",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFFBF7",
+  "theme_color": "#006D77",
+  "description": "A premium random quote generator built with Flutter.",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": []
+}
