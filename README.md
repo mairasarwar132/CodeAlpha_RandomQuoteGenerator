@@ -1,25 +1,28 @@
-# QuoteFlow - Random Quote Generator
+# QuoteFlow
 
-QuoteFlow is a premium Flutter random quote generator created for the CodeAlpha internship task. It displays a random inspirational quote on launch, lets users generate a new quote instantly, and presents the experience with a polished Material 3 interface.
+QuoteFlow is a Flutter random quote generator created for the CodeAlpha Flutter Development Internship. It delivers a curated local collection of inspirational quotes through a responsive Material 3 interface with smooth quote transitions and light/dark theme support.
+
+The app runs fully offline. Quotes are stored locally in the project, so the experience is fast, dependable, and does not require an API, Firebase, or a database.
 
 ## Features
 
-- Random quote shown automatically on app launch
-- New Quote action with no consecutive repeats
-- 100+ local inspirational quotes
-- Quote text and author presentation
-- Clean Architecture folder structure
-- Riverpod state management
-- GoRouter navigation
+- Random quote shown when the home screen loads
+- New Quote button with no consecutive duplicate quote
+- 100+ curated local quotes
 - Material 3 light and dark themes
-- Responsive mobile, tablet, and desktop layout
-- AnimatedSwitcher fade and scale quote transitions
-- Accessible live quote updates and semantic labels
-- Local data only, with no API, Firebase, or database dependency
+- Session-based theme toggle
+- Responsive layout for phones, tablets, and landscape screens
+- Smooth animated quote transitions
+- Accessibility labels for the quote content and quote count
+- Offline-first local repository
 
 ## Architecture
 
-The app is organized by feature and responsibility:
+QuoteFlow uses a feature-first Flutter structure. Shared app code lives in `lib/core`, while quote-specific data, state management, screens, and widgets live in `lib/features/quotes`.
+
+Routing is handled by GoRouter. App state is managed with Riverpod. The UI uses Material 3 theming with custom light and dark color schemes.
+
+## Folder Structure
 
 ```text
 lib/
@@ -38,21 +41,49 @@ lib/
         providers/
         screens/
         widgets/
+assets/
+  screenshots/
+android/
+test/
+web/
 ```
 
-## Screenshots
+## Technologies
 
-Add production screenshots here after running the app on target devices.
+- Flutter
+- Dart
+- Material 3
+- Riverpod
+- GoRouter
+- Android Gradle Plugin
+- Kotlin
 
-| Light Theme | Dark Theme |
-| --- | --- |
-| Screenshot placeholder | Screenshot placeholder |
+## Dependencies
+
+- `flutter_riverpod`
+- `go_router`
+- `google_fonts`
+- `cupertino_icons`
+- `flutter_lints`
 
 ## Installation
 
 ```bash
 flutter pub get
+```
+
+## Run Instructions
+
+Run on a connected Android device or emulator:
+
+```bash
 flutter run
+```
+
+Build a debug APK:
+
+```bash
+flutter build apk --debug
 ```
 
 ## Quality Checks
@@ -64,26 +95,17 @@ flutter test
 flutter build apk --debug
 ```
 
-## Technologies Used
+## Screenshots
 
-- Flutter
-- Dart
-- Riverpod
-- GoRouter
-- Google Fonts
-- Material 3
-
-## Dependencies
-
-- `flutter_riverpod`
-- `go_router`
-- `google_fonts`
-- `cupertino_icons`
-- `flutter_lints`
+| Home Light Theme | Home Dark Theme |
+| --- | --- |
+| ![QuoteFlow light home screen](assets/screenshots/light_home.png) | ![QuoteFlow dark home screen](assets/screenshots/dark_home.png) |
 
 ## Author
 
-Maira Sarwar 
+Maira Sarwar
+
+GitHub: [mairasarwar132](https://github.com/mairasarwar132)
 
 ## Future Improvements
 
@@ -91,4 +113,4 @@ Maira Sarwar
 - Quote categories
 - Share quote action
 - Daily quote notification
-- Offline screenshot export
+- Export quote as image

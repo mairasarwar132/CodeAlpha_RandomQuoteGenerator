@@ -4,18 +4,24 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
-import 'features/quotes/presentation/widgets/splash_gate.dart';
+import 'core/theme/theme_mode_provider.dart';
 
 void main() {
   GoogleFonts.config.allowRuntimeFetching = false;
   runApp(const ProviderScope(child: RandomQuoteApp()));
 }
 
-class RandomQuoteApp extends ConsumerWidget {
+class RandomQuoteApp extends ConsumerStatefulWidget {
   const RandomQuoteApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<RandomQuoteApp> createState() => _RandomQuoteAppState();
+}
+
+class _RandomQuoteAppState extends ConsumerState<RandomQuoteApp> {
+  @override
+  Widget build(BuildContext context) {
+    final themeMode = ref.watch(themeModeProvider);
     final router = ref.watch(appRouterProvider);
 
     return MaterialApp.router(
@@ -23,11 +29,8 @@ class RandomQuoteApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: themeMode,
       routerConfig: router,
-      builder: (context, child) {
-        return SplashGate(child: child ?? const SizedBox.shrink());
-      },
     );
   }
 }

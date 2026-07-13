@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/constants/app_spacing.dart';
+import '../../../../core/theme/theme_mode_provider.dart';
 import '../../../../core/utils/responsive_layout.dart';
 import '../../../../core/widgets/app_background.dart';
 import '../../../../core/widgets/app_logo.dart';
@@ -20,10 +21,36 @@ class QuoteHomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final quote = ref.watch(quoteControllerProvider);
     final controller = ref.read(quoteControllerProvider.notifier);
+    final themeMode = ref.watch(themeModeProvider);
     final isCompact = ResponsiveLayout.isCompact(context);
     final isWide = MediaQuery.sizeOf(context).width >= 940;
+    final platformBrightness = MediaQuery.platformBrightnessOf(context);
+    final isDarkMode =
+        themeMode == ThemeMode.dark ||
+        (themeMode == ThemeMode.system &&
+            platformBrightness == Brightness.dark);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        toolbarHeight: 52,
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        actions: [
+          Padding(
+            padding: const EdgeInsetsDirectional.only(end: AppSpacing.sm),
+            child: IconButton(
+              tooltip: isDarkMode ? 'Use light theme' : 'Use dark theme',
+              onPressed: () {
+                ref.read(themeModeProvider.notifier).toggle(platformBrightness);
+              },
+              icon: Icon(
+                isDarkMode ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+              ),
+            ),
+          ),
+        ],
+      ),
       body: AppBackground(
         child: SafeArea(
           child: Center(

@@ -6,6 +6,7 @@ import '../../features/quotes/presentation/screens/quote_home_screen.dart';
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: QuoteHomeScreen.routePath,
+    overridePlatformDefaultLocation: true,
     routes: [
       GoRoute(
         path: QuoteHomeScreen.routePath,
